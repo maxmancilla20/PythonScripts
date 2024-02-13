@@ -1,9 +1,14 @@
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
+from Crypto.Random import get_random_bytes
 #from scapy.all import *
 #import zlib
 import binascii
 
+def generar_clave():
+    # Genera una clave aleatoria de 16 bytes (128 bits) para AES
+    return get_random_bytes(16)
+    
 def cifrar(texto_plano, clave, iv):
     cipher = AES.new(clave, AES.MODE_CBC, iv)
     texto_plano = pad(texto_plano.encode('utf-8'), AES.block_size)
